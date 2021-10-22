@@ -12,21 +12,59 @@
     <title>TP DOM & BOM</title>
 </head>
 <body>
-    <main class="container my-5 text-center">
-        <section>
-            <article>
-                <button class="btn btn-primary" onclick="numeroAzar()">
-                    Comenzar juego
-                </button>
-            </article>
-            <article class="my-5">
-                <input type="text" placeholder="Ingresar numero" id="numeroIngresado">
-                <button class="btn btn-primary" onclick="enviar()">
-                    Enviar
-                </button>
-            </article>
-        </section>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+              <a class="navbar-brand ms-3" href="index.html">CRUD</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0  me-5">
+                    <li class="nav-item">
+                      <a class="nav-link active ms-3" aria-current="page" href="index.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link ms-3" href="#">#</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link ms-3" href="#">#</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link ms-3" href="#">#</a>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main class="container my-5">
+       <section class="text-center">
+           <h1 class="display-1 my-5">Administrador de productos</h1>
+           <hr>
+       </section>
+       <section>
+           <h4 class="lead">Cargar productos</h4>
+           <hr>
+           <article>
+                <form>
+                    <label for="inputCodigo" class="text-muted form-label">Código</label>
+                    <input type="text" class="form-control mb-3" id="inputCodigo">
+                    <label for="inputProducto"  class="text-muted form-label">Producto</label>
+                    <input type="text" class="form-control mb-3" id="inputProducto">
+                    <label for="inputDescripcion"  class="text-muted form-label">Descripción</label>
+                    <input type="text" class="form-control mb-3" id="inputDescripcion">
+                    <label for="inputCantidad"  class="text-muted form-label">Cantidad</label>
+                    <input type="text" class="form-control mb-3" id="inputCantidad">
+                    <label for="inputUrl"  class="text-muted form-label">URL</label>
+                    <input type="text" class="form-control" id="inputUrl">
+                </form>
+           </article>
+       </section>
     </main>
+    <footer>
+
+    </footer>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ejercicio1.js"></script>
 </body>
