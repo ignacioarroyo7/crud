@@ -49,16 +49,18 @@ function agregarProducto(){
 
     //cargar el objeto producto dentro del arreglo
     listaProductos.push(productoNuevo);
-    //limpiar el formulario
-    limpiarFormulario();
 
     //al arreglo de productos lo almacenamos en localstorage
     localStorage.setItem('arregloProductos',JSON.stringify(listaProductos)); //stringify convierte el codigo a formato json
 
+    //limpiar el formulario
+    limpiarFormulario();
+
+    //agregar el producto nuevo en la fila de la tabla
+    crearFilas(productoNuevo);
+
     //mostrar un mensaje que indique que se agrego el producto correctamente
 
-
-    //agregar el objeto producto a una tabla
 }
 
 function limpiarFormulario(){
@@ -75,4 +77,23 @@ function limpiarFormulario(){
 function cargaInicial(){
     //traer los datos del localStorage
     listaProductos = JSON.parse(localStorage.getItem('arregloProductos'))||[]; //metodo parse convierte de formato json a codigo 
+    
+    listaProductos.forEach((itemProducto) => { //itemProducto es el parametro que representa cada elemento en cada vuelta del for
+        crearFilas(itemProducto);
+    });
+}
+
+function crearFilas(itemProducto){
+    let tabla = document.querySelector('#tablaProducto');
+    tabla.innerHTML += `<tr>
+    <th scope="row">${itemProducto.codigo}</th>
+    <td>${itemProducto.producto}</td>
+    <td>${itemProducto.descripcion}</td>
+    <td>${itemProducto.cantidad}</td>
+    <td>${itemProducto.url}</td>
+    <td>
+      <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-danger"><i class="fas fa-trash-alt light"></i></button>
+    </td>
+  </tr>`
 }

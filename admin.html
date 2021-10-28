@@ -7,6 +7,7 @@
     <!-- agregar las etiquetas meta -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/012f3cd5dc.js" crossorigin="anonymous"></script>
     <title>Crud Productos</title>
   </head>
   <body>
@@ -99,26 +100,33 @@
             </div>
           </form>
         </article>
-        <section>
-          <button class="btn btn-primary" id="btnNuevoProducto">
-            Nuevo producto
-          </button>
-          <article class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Producto</th>
-                  <th scope="col">Descripcion</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">URL</th>
-                  <th scope="col">Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="tablaProducto"></tbody>
-            </table>
-          </article>
-        </section>
+        <article class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">URL</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaProducto">
+              <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                  <button class="btn btn-danger"><i class="fas fa-trash-alt light"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
       </section>
     </main>
     <footer></footer>
