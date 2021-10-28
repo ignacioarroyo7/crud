@@ -103,7 +103,7 @@ function crearFilas(itemProducto){
     <td>${itemProducto.url}</td>
     <td>
       <button class="btn btn-warning" onclick='prepararEdicion(${itemProducto.codigo})'><i class="fas fa-edit"></i></button>
-      <button class="btn btn-danger"><i class="fas fa-trash-alt light"></i></button>
+      <button class="btn btn-danger" onclick='eliminarProducto(${itemProducto.codigo})'><i class="fas fa-trash-alt light"></i></button>
     </td>
   </tr>`
 }
@@ -158,6 +158,23 @@ function actualizarProducto(){
 function borrarFilas(){
     let tabla = document.querySelector('#tablaProducto');
     tabla.innerHTML='';
+}
+
+window.eliminarProducto = (codigoProducto) => {
+    console.log(codigoProducto);
+    ///aqui borramos el producto dentro del arreglo
+    let productosFiltrados = listaProductos.filter((itemProducto)=>{
+        return itemProducto.codigo!=codigoProducto; //filter me filtra todos los elementos que cumplan con la condicion logica en el nuevo arreglo productosFiltrados, de este modo lo dejo fuera al que coincida con el codigo que recibo por parametro
+    });
+    //actualizo el array listaProductos
+    listaProductos = productosFiltrados;
+    //actualizo el localStorage
+    localStorage.setItem('arregloProductos',JSON.stringify(listaProductos));
+    //dibujar de nuevo la tabla
+    borrarFilas();
+    listaProductos.forEach((itemProducto)=>{
+        crearFilas(itemProducto);
+    });
 }
 
 
