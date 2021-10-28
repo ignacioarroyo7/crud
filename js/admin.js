@@ -17,6 +17,7 @@ let cantidad =document.querySelector('#cantidad');
 let url = document.querySelector('#url');
 let formProducto = document.querySelector('#formProducto');
 let listaProductos = [];
+let productoExistente = false; /// si es false significa que tengo que agregar un nuevo producto, si es true tengo que modificar uno existente
 
 cargaInicial();
 
@@ -92,8 +93,29 @@ function crearFilas(itemProducto){
     <td>${itemProducto.cantidad}</td>
     <td>${itemProducto.url}</td>
     <td>
-      <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-warning" onclick='prepararEdicion(${itemProducto.codigo})'><i class="fas fa-edit"></i></button>
       <button class="btn btn-danger"><i class="fas fa-trash-alt light"></i></button>
     </td>
   </tr>`
+}
+
+window.prepararEdicion = (codigoProducto)=>{ //window es un objeto global que se accede desde el archivo HTML o JS, le creo una propiedad prepararEdicion y desde esa llamo a la funcion, con una funcion anonima. lo hago para poder usar la funcion local al HTML, para poder usar el onclick porque es admin.js es tipo modulo
+    console.log(codigoProducto);
+    //buscar el objeto
+    //find devuelve un objeto, y a ese objeto le obtengo el codigo
+    let productoBuscado = listaProductos.find((itemProducto)=>{
+        return itemProducto.codigo == codigoProducto; //verifica si el item del itemProducto actual es el mismo que el codigoProducto que recibe por parametro
+    });
+    console.log(productoBuscado);
+    
+    //mostrarlo en el formulario
+    codigo.value = productoBuscado.codigo;
+    producto.value = productoBuscado.producto;
+    descripcion.value = productoBuscado.descripcion;
+    cantidad.value = productoBuscado.cantidad;
+    url.value = productoBuscado.url;
+
+    //cambio el valor de la variable productoExistente
+    productoExistente = true;
+    
 }
