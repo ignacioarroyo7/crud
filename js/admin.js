@@ -19,6 +19,7 @@ let formProducto = document.querySelector('#formProducto');
 let listaProductos = [];
 let productoExistente = false; /// si es false significa que tengo que agregar un nuevo producto, si es true tengo que modificar uno existente
 
+let btnNuevoProducto = document.querySelector('#btnNuevoProducto');
 cargaInicial();
 
 //le agregamos el evento
@@ -29,17 +30,21 @@ descripcion.addEventListener('blur',() => {validarCampoRequerido(descripcion)});
 cantidad.addEventListener('blur',() => {validarNumeros(cantidad)});
 url.addEventListener('blur',()=>{validarUrl(url)});
 formProducto.addEventListener('submit', guardarProducto);
+btnNuevoProducto.addEventListener('click',limpiarFormulario);
 
 function guardarProducto(e){
     e.preventDefault();
     //verificar que pase todas las validaciones
     if(validarGeneral()){
-        //crear el producto
-        console.log('producto creado');
-        agregarProducto();
-    }else{
-        //no hago nada, el usuario corrije
-        console.log('corregir producto');
+        //crear el producto de acuerdo al valor de la variable productoExistente
+        if(productoExistente===false){
+        agregarProducto(); 
+        productoExistente=true;
+        }else{
+            //si el producto existe, entonces tengo que modificar el producto
+            actualizarProducto();
+            productoExistente=false;
+        } 
     }
 }
 
@@ -72,6 +77,10 @@ function limpiarFormulario(){
     descripcion.className  ='form-control';
     cantidad.className  ='form-control';
     url.className ='form-control';
+
+    //resetear el valor de la variable booleana productoExistente a false
+
+    productoExistente = false;
     
 }
 
@@ -119,3 +128,38 @@ window.prepararEdicion = (codigoProducto)=>{ //window es un objeto global que se
     productoExistente = true;
     
 }
+
+function actualizarProducto(){
+    //buscar la posicion del elemento a editar dentro del arreglo
+    //findIndex, busca el elemento y nos devuelve la posicion del elemento que cumple la condicion logica que le paso
+    let posicionProducto = listaProductos.findIndex((itemProducto)=>{
+        return itemProducto.codigo==codigo.value; //quiero retornar el elemento del array que su codigo coincida con el que esta esccrito en el value codigo del formulario
+    });
+    
+    //modificar los datos de esa posicion del arreglo
+    listaProductos[posicionProducto].producto = producto.value;
+    listaProductos[posicionProducto].descripcion = descripcion.value;
+    listaProductos[posicionProducto].cantidad = cantidad.value;
+    listaProductos[posicionProducto].url = url.value;
+
+    //modificar el localstorage
+    localStorage.setItem('arregloProductos', JSON.stringify(listaProductos));
+    //volver a dibujar la tabla con los nuevos datos reutilizando a la funcion
+    borrarFilas();
+    listaProductos.forEach((itemProducto)=>{
+        crearFilas(itemProducto)});
+
+    //limpiar formulario
+    limpiarFormulario();
+
+    //mostrar un mensaje al usuario
+}
+
+function borrarFilas(){
+    let tabla = document.querySelector('#tablaProducto');
+    tabla.innerHTML='';
+}
+
+
+
+
