@@ -3,6 +3,9 @@
 
 _Practica de create, read, update y delete usando Javascript vanila_
 
+## Demo del proyecto
+- [DEMO practica de CRUD](https://crudnacho.netlify.app)
+
 ### Como clonar nuestro proyecto?
 
 Realiza los siguientes comandos:
